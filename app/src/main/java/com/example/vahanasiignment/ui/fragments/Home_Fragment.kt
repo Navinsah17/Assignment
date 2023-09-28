@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vahanasiignment.MainActivity
@@ -86,8 +87,11 @@ class Home_Fragment : Fragment() {
     adapter = UniversityAdapter(object : UniversityAdapter.OnItemsClick {
         override fun onClickWebsite(link: String) {
             // Handle the click event here, e.g., open a website using an Intent
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-            startActivity(intent)
+            /*val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(intent)*/
+            val builder = CustomTabsIntent.Builder()
+            val CustomTabsIntent = builder.build()
+            CustomTabsIntent.launchUrl(binding.root.context,Uri.parse(link))
         }
     })
             binding.rvhome.adapter = adapter // Set the adapter for the RecyclerView
